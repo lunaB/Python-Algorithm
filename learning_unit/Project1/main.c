@@ -1,8 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define MAX2(a,b) (a)>(b)?(a):(b)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#define MAX2(a,b) (a)>(b)?(a):(b)
 
 /*
 	제작자 : 나영채
@@ -14,22 +15,23 @@ double bias = 1.0;
 
 double input;
 double output;
+double delta = 0.1; // 변화량 델타
 
 double getActivation(const double x) {
 	return x;
-	//ReLU
+	//ReLU 양
 	//return MAX2(2, 0);
 }
 double getActGrad(const double x) {
 	return 1.0;
-	//ReLU
+	//ReLU양
 	//return MAX2(x,0); 
 }
 void propBacward(const double target) {
-	const double alpha = 0.1;
+	//const double delta = 0.1;
 	const double grad = (output - target) * getActGrad(output);
-	weight += -alpha * grad * input; // last input came from d(wx+b)/dw = x
-	bias += -alpha * grad * 1.0; //last 0.1 came from d(wx+b)/db = 1
+	weight += -delta * grad * input; //d(wx+b)/dw = x
+	bias += -delta * grad * 1.0; //d(wx+b)/db = 1
 }
 double feedForward(const double input_t) {
 	input = input_t;
@@ -37,19 +39,43 @@ double feedForward(const double input_t) {
 	output = getActivation(sigma);
 	return output;
 }
+
+struct training
+{
+	double input_training;
+	double output_tranining;
+};
+
 int main() {
-	puts("training");
-	double in_arr[3] = { 1.0,2.0,3.0 };
-	double out_arr[3] = { 100.0,200.0,300.0 };
-	srand((unsigned)time(NULL));
-	for (int i = 0; i < 10000; i++) {
-		int k = rand()%3;
-		feedForward(in_arr[k]);
-		propBacward(out_arr[k]);
-		printf("no=%d w=%f a=%f out=%f\n", i, weight, bias, output);
+	system("title 나영채 16-10-29 ra20617.dothome.co.kr/dream");
+	struct training t[5];
+	FILE *f;
+	f = fopen("trainingFile.txt", "r");
+	const int line = 10;
+	for (int i = 0; i < 5; i++) {
+		fscanf(f, "%lf %lf\n",&t[i].input_training,&t[i].output_tranining);
 	}
-	double tmp;
+	fclose(f);
+
+	int learnNum = 0;
+	printf("delta : ");
+	scanf("%lf", &delta);
+	printf("Number of learning : ");
+	scanf("%d", &learnNum);
+
+	srand((unsigned)time(NULL));
+	puts("training");
+	for (int i = 0; i < learnNum; i++) {
+		int r = rand()%5;
+		feedForward(t[r].input_training);
+		propBacward(t[r].output_tranining);
+		printf("no=%d r=%d w=%f a=%f out=%f\n", i, r, weight, bias, output);
+	}
+
 	while (1) {
+		double tmp;
+		puts("test nur");
+		printf("::");
 		scanf_s("%lf", &tmp);
 		printf("result=%f\n", feedForward(tmp));
 	}
