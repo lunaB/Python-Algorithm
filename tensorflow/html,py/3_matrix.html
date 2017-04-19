@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>1_mnist_first</title>
+<title>Untitled</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -176,54 +176,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.examples.tutorials.mnist</span> <span class="kn">import</span> <span class="n">input_data</span>
-<span class="n">mnist</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">read_data_sets</span><span class="p">(</span><span class="s2">&quot;MNIST_data/&quot;</span><span class="p">,</span> <span class="n">one_hot</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Extracting MNIST_data/train-images-idx3-ubyte.gz
-Extracting MNIST_data/train-labels-idx1-ubyte.gz
-Extracting MNIST_data/t10k-images-idx3-ubyte.gz
-Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,[</span><span class="bp">None</span><span class="p">,</span><span class="mi">784</span><span class="p">])</span>
-<span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">784</span><span class="p">,</span><span class="mi">10</span><span class="p">]))</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">10</span><span class="p">]))</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">W</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -236,44 +189,39 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">y_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,[</span><span class="bp">None</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">cross_entropy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="o">-</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">y_</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">reduction_indices</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-<span class="n">train_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cross_entropy</span><span class="p">)</span>
-</pre></div>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#좋지못한 예</span>
+<span class="n">x1_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">73.</span><span class="p">,</span><span class="mf">93.</span><span class="p">,</span><span class="mf">89.</span><span class="p">,</span><span class="mf">96.</span><span class="p">,</span><span class="mf">73.</span><span class="p">]</span>
+<span class="n">x2_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">80.</span><span class="p">,</span><span class="mf">88.</span><span class="p">,</span><span class="mf">91.</span><span class="p">,</span><span class="mf">98.</span><span class="p">,</span><span class="mf">66.</span><span class="p">]</span>
+<span class="n">x3_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">75.</span><span class="p">,</span><span class="mf">93.</span><span class="p">,</span><span class="mf">90.</span><span class="p">,</span><span class="mf">100.</span><span class="p">,</span><span class="mf">90.</span><span class="p">]</span>
+<span class="n">y_data</span> <span class="o">=</span> <span class="p">[</span><span class="mf">152.</span><span class="p">,</span><span class="mf">185.</span><span class="p">,</span><span class="mf">180.</span><span class="p">,</span><span class="mf">196.</span><span class="p">,</span><span class="mf">142.</span><span class="p">]</span>
 
-</div>
-</div>
-</div>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">w1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+<span class="n">w3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;bias&#39;</span><span class="p">)</span>
+
+<span class="n">hypothesis</span> <span class="o">=</span> <span class="n">x1</span><span class="o">*</span><span class="n">w1</span> <span class="o">+</span> <span class="n">x2</span><span class="o">*</span><span class="n">w2</span> <span class="o">+</span> <span class="n">x3</span><span class="o">*</span><span class="n">w3</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">hypothesis</span> <span class="o">-</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+
 <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
-<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="n">batch_xs</span><span class="p">,</span> <span class="n">batch_ys</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">next_batch</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_step</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_xs</span><span class="p">,</span> <span class="n">y_</span><span class="p">:</span> <span class="n">batch_ys</span><span class="p">})</span>
-</pre></div>
 
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">correct_prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">correct_prediction</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
-
-<span class="c1">#정확도 (일치율)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">images</span><span class="p">,</span> <span class="n">y_</span><span class="p">:</span><span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">labels</span><span class="p">})))</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2001</span><span class="p">):</span>
+    <span class="n">cost_val</span><span class="p">,</span> <span class="n">hy_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">cost</span><span class="p">,</span> <span class="n">hypothesis</span><span class="p">,</span> <span class="n">train</span><span class="p">],</span>
+                                  <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x1</span><span class="p">:</span><span class="n">x1_data</span><span class="p">,</span> <span class="n">x2</span><span class="p">:</span><span class="n">x2_data</span><span class="p">,</span> <span class="n">x3</span><span class="p">:</span><span class="n">x3_data</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">y_data</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;Cost:&quot;</span> <span class="p">,</span> <span class="n">cost_val</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Prediction:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">hy_val</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -286,7 +234,17 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.9132%
+<pre>(0, &apos;Cost:&apos;, 11153.674, &apos;\nPrediction:\n&apos;, array([ 53.08945465,  70.0708313 ,  65.71421051,  73.90106201,  72.66766357], dtype=float32))
+(400, &apos;Cost:&apos;, 58.597828, &apos;\nPrediction:\n&apos;, array([ 148.14614868,  180.8523407 ,  176.75683594,  193.61068726,
+        157.64311218], dtype=float32))
+(800, &apos;Cost:&apos;, 27.486288, &apos;\nPrediction:\n&apos;, array([ 150.20083618,  181.09553528,  178.21180725,  194.36828613,
+        152.63435364], dtype=float32))
+(1200, &apos;Cost:&apos;, 13.957047, &apos;\nPrediction:\n&apos;, array([ 151.51786804,  181.29695129,  179.1676178 ,  194.85736084,
+        149.33769226], dtype=float32))
+(1600, &apos;Cost:&apos;, 7.9973297, &apos;\nPrediction:\n&apos;, array([ 152.35244751,  181.46936035,  179.79615784,  195.17068481,
+        147.16407776], dtype=float32))
+(2000, &apos;Cost:&apos;, 5.302073, &apos;\nPrediction:\n&apos;, array([ 152.87181091,  181.62121582,  180.21003723,  195.36906433,
+        145.72718811], dtype=float32))
 </pre>
 </div>
 </div>
@@ -297,24 +255,35 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#직접 테스트 해볼 사진 번호</span>
-<span class="n">test_index</span> <span class="o">=</span> <span class="mi">9</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#좋은 예</span>
+<span class="c1">#매트릭스 / 벡터 계산</span>
+<span class="n">x_data</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">73.</span><span class="p">,</span><span class="mf">80.</span><span class="p">,</span><span class="mf">75.</span><span class="p">],[</span><span class="mf">93.</span><span class="p">,</span><span class="mf">88.</span><span class="p">,</span><span class="mf">93.</span><span class="p">],[</span><span class="mf">89.</span><span class="p">,</span><span class="mf">91.</span><span class="p">,</span><span class="mf">90.</span><span class="p">],[</span><span class="mf">96.</span><span class="p">,</span><span class="mf">98.</span><span class="p">,</span><span class="mf">100.</span><span class="p">],[</span><span class="mf">73.</span><span class="p">,</span><span class="mf">66.</span><span class="p">,</span><span class="mf">90.</span><span class="p">]]</span>
+<span class="n">y_data</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">152.</span><span class="p">],[</span><span class="mf">185.</span><span class="p">],[</span><span class="mf">180.</span><span class="p">],[</span><span class="mf">196.</span><span class="p">],[</span><span class="mf">142.</span><span class="p">]]</span>
 
-<span class="n">output_label</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:[</span><span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">test_index</span><span class="p">]]})[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
-<span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">print(output_label)</span>
-<span class="sd">max_index = 0;</span>
-<span class="sd">for i in range(10):</span>
-<span class="sd">    if output_label[max_index] &lt; output_label[i]:</span>
-<span class="sd">        max_index = i</span>
-<span class="sd">print(&quot;사진의 숫자는 %s 입니다.&quot; % (max_index))</span>
-<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]),</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;bias&#39;</span><span class="p">)</span>
 
-<span class="k">print</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">output_label</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">hypothesis</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">hypothesis</span> <span class="o">-</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2001</span><span class="p">):</span>
+    <span class="n">cost_val</span><span class="p">,</span> <span class="n">hy_val</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">cost</span><span class="p">,</span> <span class="n">hypothesis</span><span class="p">,</span> <span class="n">train</span><span class="p">],</span>
+                                  <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span><span class="n">y_data</span><span class="p">})</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="s2">&quot;Cost:&quot;</span> <span class="p">,</span> <span class="n">cost_val</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Prediction:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">hy_val</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -327,68 +296,36 @@ Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>9
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#출력 28*28 size</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">test_index</span><span class="p">])):</span>
-    <span class="k">if</span> <span class="n">mnist</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">test_index</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">),</span>
-    <span class="k">else</span> <span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">),</span>
-    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">28</span> == 27 :
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . 0 0 0 0 0 0 0 . . . . . . . . 
-. . . . . . . . . . . 0 0 0 0 0 0 0 0 0 0 0 0 . . . . . 
-. . . . . . . . . 0 0 0 0 0 0 0 0 0 0 0 0 0 0 . . . . . 
-. . . . . . . . 0 0 0 0 0 0 0 . . 0 0 0 0 0 0 0 . . . . 
-. . . . . . 0 0 0 0 0 0 0 . . . . 0 0 0 0 0 0 0 . . . . 
-. . . . . . 0 0 0 0 0 . . . . 0 0 0 0 0 0 0 0 0 . . . . 
-. . . . . . 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 . . . . . 
-. . . . . . 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 . . . . . . 
-. . . . . . . . 0 0 0 0 0 0 0 0 0 0 0 0 0 . . . . . . . 
-. . . . . . . . . . . . . . 0 0 0 0 0 0 . . . . . . . . 
-. . . . . . . . . . . . . 0 0 0 0 0 . . . . . . . . . . 
-. . . . . . . . . . . . 0 0 0 0 0 0 . . . . . . . . . . 
-. . . . . . . . . . . 0 0 0 0 0 0 . . . . . . . . . . . 
-. . . . . . . . . . . 0 0 0 0 0 . . . . . . . . . . . . 
-. . . . . . . . . . 0 0 0 0 0 . . . . . . . . . . . . . 
-. . . . . . . . . 0 0 0 0 0 0 . . . . . . . . . . . . . 
-. . . . . . . . . 0 0 0 0 0 . . . . . . . . . . . . . . 
-. . . . . . . . . 0 0 0 0 . . . . . . . . . . . . . . . 
-. . . . . . . . . 0 0 0 0 . . . . . . . . . . . . . . . 
-. . . . . . . . . 0 0 0 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+<pre>(0, &apos;Cost:&apos;, 53823.406, &apos;\nPrediction:\n&apos;, array([[-43.61141586],
+       [-70.40665436],
+       [-60.06307602],
+       [-64.74501801],
+       [-58.00596237]], dtype=float32))
+(400, &apos;Cost:&apos;, 1474.4418, &apos;\nPrediction:\n&apos;, array([[ 126.19494629],
+       [ 133.78659058],
+       [ 141.0763855 ],
+       [ 154.34945679],
+       [ 113.12648773]], dtype=float32))
+(800, &apos;Cost:&apos;, 79.125076, &apos;\nPrediction:\n&apos;, array([[ 153.91630554],
+       [ 167.12666321],
+       [ 173.91539001],
+       [ 190.1184845 ],
+       [ 141.06071472]], dtype=float32))
+(1200, &apos;Cost:&apos;, 41.901787, &apos;\nPrediction:\n&apos;, array([[ 158.44104004],
+       [ 172.57345581],
+       [ 179.27789307],
+       [ 195.95802307],
+       [ 145.61659241]], dtype=float32))
+(1600, &apos;Cost:&apos;, 40.876854, &apos;\nPrediction:\n&apos;, array([[ 159.17869568],
+       [ 173.46641541],
+       [ 180.15460205],
+       [ 196.91131592],
+       [ 146.35575867]], dtype=float32))
+(2000, &apos;Cost:&apos;, 40.816738, &apos;\nPrediction:\n&apos;, array([[ 159.29801941],
+       [ 173.61585999],
+       [ 180.2988739 ],
+       [ 197.06678772],
+       [ 146.47175598]], dtype=float32))
 </pre>
 </div>
 </div>

@@ -49,16 +49,20 @@ print("%s%%" % (sess.run(accuracy, feed_dict={x: mnist.test.images, y_:mnist.tes
 # In[7]:
 
 #직접 테스트 해볼 사진 번호
-test_index = 16
+test_index = 9
 
 output_label = sess.run(y, feed_dict={x:[mnist.test.images[test_index]]})[0]
-print(output_label)
 
+'''
+print(output_label)
 max_index = 0;
 for i in range(10):
     if output_label[max_index] < output_label[i]:
         max_index = i
 print("사진의 숫자는 %s 입니다." % (max_index))
+'''
+
+print sess.run(tf.argmax(output_label,0))
 
 
 # In[8]:
