@@ -1,4 +1,4 @@
-package cbr;
+package cbr_debug;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,17 +9,9 @@ import java.util.Map;
 /**
  * 
  *  Case Based Reasoning : 사례 기반 추론 기법
- *  
- * 	개발 : 나영채
+ *  예) http://courses.ischool.berkeley.edu/i256/f06/projects/bonniejc.pdf
+ * 	debug 완료 [*]
  * 
- * 	개요 : CBR 알고리즘을 사용한 대화형 챗봇 라이브러리
- * 
- * 	17-03-26 시작 / 중단
- *  17-05-05 시작
- *  17-05-10 완료
- * 
- *  참고 위치 : http://courses.ischool.berkeley.edu/i256/f06/projects/bonniejc.pdf
- *  			http://blog.naver.com/phillyai/220733534288
  */
 public class CBR {
 	
@@ -37,11 +29,18 @@ public class CBR {
 		table.add("i want food", "Me too, I'm hungry");			//Me too, I'm hungry
 		table.add("they had good food at the restaurant", "what kind did they have?");	//what kind did they have?
 		
-		//run
 		System.out.println(table.calc("i want kitten"));
+		
 		System.out.println(table.calc("i want food"));
+		
 		System.out.println(table.calc("they had good food at restaurant"));
 		
+		
+		
+		table.debugWeight();
+		
+		System.out.println("i want food");
+		System.out.println(table.calc("i want food"));
 		
 		//test
 		//System.out.println(table.weightMap.get("i")[1]);
@@ -87,6 +86,29 @@ class Table {
 		sentence.add(new Sentence(out, words.length));
 	}
 	
+	public void debugWeight(){
+		
+		System.out.println(":::::::: sentence weight ::::::::");
+		Iterator<Sentence> it1 = sentence.iterator();
+		while(it1.hasNext()){
+			System.out.println(it1.next().weight());
+		}
+		System.out.println();
+		
+		System.out.println(":::::::: word link ::::::::");
+		for(String key : wordMap.keySet()){
+			System.out.print(key+" ");
+			for(int val : wordMap.get(key)){
+				System.out.print(val+" ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		
+		
+	}
+	
 	public String calc(String input){
 		/*
 		 * *1번단어 (1/문장연결수) / (1/단어가 가르키는 문장의 문장연결수) + ... +
@@ -105,15 +127,22 @@ class Table {
 			if(wordMap.containsKey(word)){ // 단어선언이 되어있을경우 
 				for(int i=0;i<wordMap.get(word).size();i++){
 					int sentenceNum = wordMap.get(word).get(i);
-					float last = tmpMap.getOrDefault(sentenceNum, (float) 0.0);
-					tmpMap.put(sentenceNum, last + 
-							(sentence.get(sentenceNum).weight() / wordWeightSum(word)));
-				
+					//if(!tmpMap.containsKey(sentenceNum)){ // 해당 번호의 문장이 안나왔을경우
+						
+						float last = tmpMap.getOrDefault(sentenceNum, (float) 0.0);
+						tmpMap.put(sentenceNum, last + 
+								(sentence.get(sentenceNum).weight() / wordWeightSum(word)));
+						System.out.println(tmpMap.toString());
+					//}
 				}//end for
 			}
 		}//end for
 		
 		float maxValue = Collections.max(tmpMap.values());
+		
+		for(int key : tmpMap.keySet()){
+			
+		}
 		
 		for(int key : tmpMap.keySet()){
 			if(tmpMap.get(key) == maxValue){
@@ -147,8 +176,8 @@ class Sentence {
 	 * weight 	연결된 단어수
 	 * sentence 결과 문장
 	 */
-	private int wordNum;	
-	private String sentence; 
+	public int wordNum;	
+	public String sentence; 
 	
 	public Sentence(String sentence, int wordNum) {
 		this.wordNum = wordNum;
