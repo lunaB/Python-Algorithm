@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import kakao_parser.KakaoParser;
+
 /**
  * 
  *  Case Based Reasoning : 사례 기반 추론 기법
@@ -42,6 +44,8 @@ public class CBR {
 		System.out.println(table.calc("i want food"));
 		System.out.println(table.calc("they had good food at restaurant"));
 		
+		
+		KakaoParser kakaoParser = new KakaoParser("KakaoTalk_20170510_1257_39_882_group");
 		
 		//test
 		//System.out.println(table.weightMap.get("i")[1]);
