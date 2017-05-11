@@ -34,8 +34,8 @@ public class CBR {
 	public void init() {
 		table = new Table();
 		
-		//test data set
 		/*
+		//test data set
 		table.add("i want a kitten", "Can we put mitten on it");		//Can we put mitten on it
 		table.add("i want food", "Me too, I'm hungry");			//Me too, I'm hungry
 		table.add("they had good food at the restaurant", "what kind did they have?");	//what kind did they have?
@@ -46,8 +46,12 @@ public class CBR {
 		System.out.println(table.calc("they had good food at restaurant"));
 		*/
 		
+		//kakao
+		/*
 		KakaoParser kakaoParser = new KakaoParser("KakaoTalk");
 		addDataList(kakaoParser.getList());
+		*/
+		
 		//test
 		//System.out.println(table.weightMap.get("i")[1]);
 		//개발 수정사항 weightMap value를 수정할수 있게 바꿔야됨. <완료>

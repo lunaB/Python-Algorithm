@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import cbr.TrainData;
-
 /**
  * 
  *  Case Based Reasoning : 사례 기반 추론 기법
@@ -38,7 +36,6 @@ public class CBR {
 		System.out.println(table.calc("they had good food at restaurant"));
 		
 		
-		
 		table.debugWeight();
 		
 		System.out.println("i want food");
@@ -56,11 +53,6 @@ public class CBR {
 	public void addData(String in,String out){
 		table.add(in, out);
 	}
-	
-	public void addDataList(ArrayList<TrainData> trainData){
-		
-	}
-	
 }
 
 class Table {

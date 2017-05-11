@@ -13,13 +13,12 @@ public class Main {
 		
 		String sTmp="";
 		System.out.println("CBR 체팅 프레임워크");
-		System.out.print("[in 1] : ");
+		System.out.print("In [1]: ");
 		int num = 2;
 		while((sTmp=scan.nextLine()) != ""){
-			System.out.println("[out "+num+"] : "+ cbr.feedString(sTmp));
-			System.out.print("[in "+num+"] : ");
+			System.out.println("Out ["+num+"]: "+ cbr.feedString(sTmp));
+			System.out.print("In ["+num+"]: ");
 			num++;
 		}
 	}
-	
 }
