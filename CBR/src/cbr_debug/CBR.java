@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import cbr.TrainData;
+
 /**
  * 
  *  Case Based Reasoning : 사례 기반 추론 기법
@@ -15,13 +17,13 @@ import java.util.Map;
  */
 public class CBR {
 	
-	Table table;
+	protected Table table;
 	
 	public CBR() {
 		init();
 	}
 	
-	public void init() {
+	protected void init() {
 		table = new Table();
 		
 		//test data set
@@ -47,6 +49,18 @@ public class CBR {
 		//개발 수정사항 weightMap value를 수정할수 있게 바꿔야됨. <완료>
 	}
 	
+	public String feedString(String input){
+		return table.calc(input);
+	}
+	
+	public void addData(String in,String out){
+		table.add(in, out);
+	}
+	
+	public void addDataList(ArrayList<TrainData> trainData){
+		
+	}
+	
 }
 
 class Table {
@@ -54,10 +68,10 @@ class Table {
 	 * String				유저의 입력예
 	 * ArrayList<Integer> 	연결되어있는 문장의 위치
 	 */
-	Map<String, ArrayList<Integer>> wordMap; 
-	ArrayList<Sentence> sentence;
+	protected Map<String, ArrayList<Integer>> wordMap; 
+	protected ArrayList<Sentence> sentence;
 	
-	public Table() {
+	protected Table() {
 		wordMap = new HashMap<String, ArrayList<Integer>>();
 		sentence = new ArrayList<Sentence>();
 	}
@@ -65,7 +79,7 @@ class Table {
 	/**
 	 * sentence
 	 */
-	public void add(String in, String out){
+	protected void add(String in, String out){
 		String[] words = in.split(" ");
 //		for(String word : words){
 //			//a 같은거 빼야됌 함수 새로만드는게좋은것같음
@@ -86,7 +100,7 @@ class Table {
 		sentence.add(new Sentence(out, words.length));
 	}
 	
-	public void debugWeight(){
+	protected void debugWeight(){
 		
 		System.out.println(":::::::: sentence weight ::::::::");
 		Iterator<Sentence> it1 = sentence.iterator();
@@ -109,7 +123,7 @@ class Table {
 		
 	}
 	
-	public String calc(String input){
+	protected String calc(String input){
 		/*
 		 * *1번단어 (1/문장연결수) / (1/단어가 가르키는 문장의 문장연결수) + ... +
 		 * *2번단어 ... +
@@ -154,7 +168,7 @@ class Table {
 	}
 	
 	// 특정 단어에게 연결되어있는 문장의 가중치의 합 구하기
-	public float wordWeightSum(String word){
+	protected float wordWeightSum(String word){
 		
 		Iterator<Integer> it = wordMap.get(word).iterator();
 		
@@ -176,23 +190,23 @@ class Sentence {
 	 * weight 	연결된 단어수
 	 * sentence 결과 문장
 	 */
-	public int wordNum;	
-	public String sentence; 
+	protected int wordNum;	
+	protected String sentence; 
 	
-	public Sentence(String sentence, int wordNum) {
+	protected Sentence(String sentence, int wordNum) {
 		this.wordNum = wordNum;
 		this.sentence = sentence;
 	}
 	
-	public String getSentence(){
+	protected String getSentence(){
 		return sentence;
 	}
 	
-	public float weight(){
+	protected float weight(){
 		return (float)1.0/wordNum;
 	}
 	
-	public void plusWeight(){
+	protected void plusWeight(){
 		wordNum++;
 	}
 }

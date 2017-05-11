@@ -35,6 +35,7 @@ public class CBR {
 		table = new Table();
 		
 		//test data set
+		/*
 		table.add("i want a kitten", "Can we put mitten on it");		//Can we put mitten on it
 		table.add("i want food", "Me too, I'm hungry");			//Me too, I'm hungry
 		table.add("they had good food at the restaurant", "what kind did they have?");	//what kind did they have?
@@ -43,13 +44,35 @@ public class CBR {
 		System.out.println(table.calc("i want kitten"));
 		System.out.println(table.calc("i want food"));
 		System.out.println(table.calc("they had good food at restaurant"));
+		*/
 		
-		
-		KakaoParser kakaoParser = new KakaoParser("KakaoTalk_20170510_1257_39_882_group");
-		
+		KakaoParser kakaoParser = new KakaoParser("KakaoTalk");
+		addDataList(kakaoParser.getList());
 		//test
 		//System.out.println(table.weightMap.get("i")[1]);
 		//개발 수정사항 weightMap value를 수정할수 있게 바꿔야됨. <완료>
+	}
+	
+	public String feedString(String input){
+		return table.calc(input);
+	}
+	
+	public void addData(String in,String out){
+		table.add(in, out);
+	}
+	/**
+	 * ddd
+	 */
+	public void addDataList(ArrayList<String> dataList){
+
+		Iterator<String> it = dataList.iterator();
+		String fir = it.next();
+		String sec = "";
+		while(it.hasNext()){
+			sec = fir;
+			fir = it.next();
+			table.add(sec, fir);
+		}
 	}
 	
 }
@@ -116,15 +139,15 @@ class Table {
 				}//end for
 			}
 		}//end for
-		
-		float maxValue = Collections.max(tmpMap.values());
-		
-		for(int key : tmpMap.keySet()){
-			if(tmpMap.get(key) == maxValue){
-				return sentence.get(key).getSentence();
+		if(tmpMap.size() != 0){
+			float maxValue = Collections.max(tmpMap.values());
+			
+			for(int key : tmpMap.keySet()){
+				if(tmpMap.get(key) == maxValue){
+					return sentence.get(key).getSentence();
+				}
 			}
 		}
-		
 		return "";
 	}
 	

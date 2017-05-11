@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import cbr.TrainData;
+
 public class KakaoParser {
 	
 	File file;
@@ -25,6 +27,7 @@ public class KakaoParser {
 			file = new File("./resources/"+resourcesName+".txt");
 			try {
 				in = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+				list = new ArrayList<String>();
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
@@ -42,7 +45,7 @@ public class KakaoParser {
 			
 			date = in.readLine();
 			in.readLine(); //맨앞 3줄 제거
-			
+			atmp = in.readLine();
 			while((stmp = in.readLine()) != null){
 				/*
 				 * replace list
@@ -60,9 +63,10 @@ public class KakaoParser {
 					continue;
 				}else {
 					atmp = split[4];
-					list.add(atmp);
+					list.add(atmp.trim());
 				}
 			}
+			in.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +74,6 @@ public class KakaoParser {
 	}
 	
 	public ArrayList<String> getList() {
-		
-		return null;
+		return list;
 	}
 }
