@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 최대적합도
-MAX_FIT = 10
+MAX_FIT = 20
 
 # 목표적합도
-GOAL_FIT = 10
+GOAL_FIT = 20
 
 # 전체 알고리즘
 class GeneticAlgorithm():
@@ -30,8 +30,17 @@ class GeneticAlgorithm():
 
     # 동작
     def run(self):
-        pass
-
+        while self.level < self.generationMax:
+            print(self.generations[self.level])
+            print("평균적합도", self.generations[self.level].fitness())
+            print("최대적합유전자", self.generations[self.level].bestGene())
+            print("최대적합유전자적합도", self.generations[self.level].bestGene().fitness())
+            if self.generations[self.level].bestGene().fitness() <= GOAL_FIT:
+                print("succeed")
+                break
+            nextGeneration = self.evolution()
+            self.generations.append(nextGeneration)
+            self.level += 1
     # 메인로직
     def debug(self):
         for level in range(self.generationMax):
@@ -40,9 +49,9 @@ class GeneticAlgorithm():
             print(self.generations[level])
 
             # 유전자모양
-            # print("유전자리스트")
-            # for i in range(self.geneCnt):
-            #     print(self.generations[level].genes[i])
+            print("유전자리스트")
+            for i in range(self.geneCnt):
+                print(self.generations[level].genes[i])
 
             # 세대 평균적합도
             print("평균적합도", self.generations[level].fitness())
@@ -59,8 +68,16 @@ class GeneticAlgorithm():
                 print(self.generations[level].sortGenes()[i])
                 print("적합도", self.generations[level].sortGenes()[i].fitness())
 
+            if self.generations[level].bestGene().fitness() <= GOAL_FIT:
+                print("succeed")
+                break
+
             # 유전자생성
             nextGeneration = self.evolution()
+            self.generations.append(nextGeneration)
+
+
+
 
 
     # 부모선택
@@ -68,16 +85,17 @@ class GeneticAlgorithm():
     # roulette()
     # ...
     def selectParents(self):
-        return [self.generations[self.level].roulette() for _ in range(self.geneCnt - self.preservationGeneCnt)]
+        parents = [self.generations[self.level].roulette() for _ in range(2)]
+        while parents[0] == parents[1]:
+            parents[1] = self.generations[self.level].roulette()
+        return parents
 
     # 자식생성
     # {interface} parents [Gene(),], return array [Gene(),]
     #
     # ...
-    def createChilds(self, parents):
-        for i in range(self.geneCnt - self.preservationGeneCnt):
-            pass
-        return []
+    def createChild(self, parents):
+        return self.generations[self.level].onePointCrossover(parents)
 
     # 진화
     # return next generation
@@ -87,7 +105,7 @@ class GeneticAlgorithm():
         nextGenes += [self.generations[self.level].sortGenes()[i] for i in range(self.preservationGeneCnt)]
 
         # 부모선택 & 선별
-        nextGenes += self.createChilds(self.selectParents())
+        nextGenes += [self.createChild(self.selectParents()) for i in range(self.geneCnt - self.preservationGeneCnt)]
 
         # 재정렬
         for i, gene in enumerate(nextGenes):
@@ -123,7 +141,7 @@ class Generation():
     # 부모선택 함수
     ##
 
-    # 선택압 추가해야함
+    # 선택압 추가해야함 (k)
     # 룰렛 휠
     def roulette(self):
         genesFit = [gene.fitness() for gene in self.genes]
@@ -140,9 +158,16 @@ class Generation():
     ##
 
     # 1점교차
-    def onePointCrossover(self):
-
-        return []
+    # len(parents) == 2
+    def onePointCrossover(self, parents):
+        point = np.random.randint(0, len(self.genes)-2)
+        newGene = []
+        for i in range(len(self.genes[0].gene)):
+            if point >= i:
+                newGene.append(parents[0].gene[i])
+            else:
+                newGene.append(parents[1].gene[i])
+        return Gene(index=-1, gene=newGene)
 
 # 유전자
 class Gene():
@@ -159,7 +184,7 @@ class Gene():
     # 적합도 함수정의
     # interface
     def fitness(self):
-        answer = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1]
+        answer = [0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1]
         res = 0
         for i, ans in enumerate(answer):
             if self.gene[i] == ans:
@@ -167,7 +192,8 @@ class Gene():
 
         return abs(MAX_FIT - (MAX_FIT - res))
 
-ga = GeneticAlgorithm(generationMax=1, geneCnt=20, geneLength=10, preservationGeneCnt=5, mutationRate=0.05)
-ga.debug()
 
-
+if __name__ == '__main__':
+    ga = GeneticAlgorithm(generationMax=100, geneCnt=20, geneLength=20, preservationGeneCnt=5, mutationRate=0.05)
+    ga.debug()
+    # ga.run()
