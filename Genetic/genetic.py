@@ -8,14 +8,11 @@ MAX_FIT = 20
 # 목표적합도
 GOAL_FIT = 20
 
-# 돌연변이율
-MUTATION_RATE = 0.01
-
 # 전체 알고리즘
 class GeneticAlgorithm():
 
     # 세대 최대 갯수, 유전자 갯수, 유전자 길이, 유전자범위, 보존 유전자 갯수, 돌연변이율
-    def __init__(self, generationMax, geneCnt, geneLength, geneRange,preservationGeneCnt, mutationRate=0.05):
+    def __init__(self, generationMax, geneCnt, geneLength, geneRange,preservationGeneCnt=1, mutationRate=0):
         self.generationMax = generationMax
         self.geneCnt = geneCnt
         self.geneLength = geneLength
@@ -86,6 +83,10 @@ class GeneticAlgorithm():
             nextGeneration = self.evolution()
             self.generations.append(nextGeneration)
 
+        # 결과 출력
+
+        plt.figure().canvas.set_window_title('View')
+
         avg = pat.Patch(color='r', label='average')
         best = pat.Patch(color='b', label='best')
 
@@ -125,7 +126,7 @@ class GeneticAlgorithm():
     # standardMutation(rate)
     # ...
     def mutationSelection(self):
-        return self.generations[self.level].standardMutation(MUTATION_RATE)
+        return self.generations[self.level].standardMutation(self.mutationRate)
 
 
     # 변이생성
@@ -188,7 +189,7 @@ class Generation():
 
     # 단일 유전자 생성 (돌연변이 이용)
     def createGene(self):
-        return Gene(index=-1, gene=np.random.randint(2, size=len(self.genes[0].gene)).tolist())
+        return Gene(index=-1, gene=np.random.randint(2, size=self.geneLength).tolist())
 
     ##
     # 부모선택 함수
@@ -213,9 +214,9 @@ class Generation():
     # 1점교차
     # len(parents) == 2
     def onePointCrossover(self, parents):
-        point = np.random.randint(0, len(self.genes[0].gene)-2)
+        point = np.random.randint(0, self.geneLength-2)
         newGene = []
-        for i in range(len(self.genes[0].gene[0].gene)):
+        for i in range(self.geneLength):
             if point >= i:
                 newGene.append(parents[0].gene[i])
             else:
@@ -225,16 +226,17 @@ class Generation():
     # 다점교차 len
     # len(parents) == 2
     def multiPointCrossover(self, parents):
-        point = [np.random.randint(0, len(self.genes[0].gene) - 2), np.random.randint(0, len(self.genes[0].gene) - 2)]
+        point = [np.random.randint(0, self.geneLength - 2), np.random.randint(0, self.geneLength - 2)]
         newGene = []
         while point[0]==point[1]:
-            point[1] = np.random.randint(0, len(self.genes[0].gene) - 2)
+            point[1] = np.random.randint(0, self.geneLength - 2)
 
-        for i in range(len(self.genes[0].gene)):
+        for i in range(self.geneLength):
             if point[0] >= i or point[1] < i:
                 newGene.append(parents[0].gene[i])
             else:
                 newGene.append(parents[1].gene[i])
+
         return Gene(index=-1, gene=newGene)
 
     ##
@@ -250,7 +252,6 @@ class Generation():
 
     # 비용비례변이
     def costMutation(self):
-        self.cost()
         pass
 
     ##
@@ -276,7 +277,7 @@ class Gene():
     # 적합도 함수정의
     # interface
     def fitness(self):
-        answer = [4, 0, 0, 1, 3, 3, 1, 0, 2, 2, 0, 4, 4, 2, 1, 2, 2, 2, 1, 3]
+        answer = [4, 0, 3, 1, 1, 1, 1, 2, 4, 4, 1, 1, 2, 4, 3, 1, 2, 3, 0, 2]
         res = 0
         for i, ans in enumerate(answer):
             if self.gene[i] == ans:
@@ -291,7 +292,7 @@ class Gene():
 
 
 if __name__ == '__main__':
-    ga = GeneticAlgorithm(generationMax=500, geneCnt=30, geneLength=20, geneRange=5, preservationGeneCnt=2, mutationRate=0.05)
+    ga = GeneticAlgorithm(generationMax=500, geneCnt=30, geneLength=20, geneRange=5, preservationGeneCnt=2, mutationRate=0.1)
     ga.debug()
     # ga.run()
     # print(ga.generations[ga.level - 1].fitness())
