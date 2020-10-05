@@ -1,6 +1,5 @@
-﻿# AI-study
+# Python Algorithtm
 
-> Clustering
-> - K-means clustering
-> - DBSCAN (Density-based spatial clustering of applications with noise)
-> - ELO system
+- K-means clustering
+- DBSCAN (Density-based spatial clustering of applications with noise)
+- ELO system
